@@ -1,27 +1,8 @@
-import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from "./actionType";
-import { login_service, logout } from "../AuthService/auth.service";
+import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, REGISTER_FAIL, REGISTER_SUCCESS } from "./actionType";
 
-// export const login = (username, password) => (dispatch) => {
-//   return login_service(username, password).then(
-//     (data) => {
-//       dispatch({
-//         type: LOGIN_SUCCESS,
-//         payload: { user: data },
-//       });
-//       return Promise.resolve();
-//     },
-//     (error) => {
-//       console.log(error);
-//       dispatch({
-//         type: LOGIN_FAIL,
-//       });
-//       return Promise.reject();
-//     }
-//   );
-// };
 
 export const Logout = () => (dispatch) => {
-  logout();
+  localStorage.removeItem("user")
   dispatch({
     type: LOGOUT,
   });
@@ -30,14 +11,14 @@ export const Logout = () => (dispatch) => {
 
 const API_URL = "https://masai-api-mocker.herokuapp.com/"
 
-export const Login_Service = (username, password) => async (dispatch) => {
+
+export const Login_Service = (username, password) => async(dispatch) => {
   const payload = {
     "username": username,
     "password": password,
   };
-
   try {
-    let res = await fetch( "https://masai-api-mocker.herokuapp.com/auth/login", {
+    let res = await fetch( API_URL + "auth/login", {
       method: "POST",
       body: JSON.stringify(payload),
       headers: {
@@ -56,8 +37,46 @@ export const Login_Service = (username, password) => async (dispatch) => {
     }
   } catch (error) {
     console.log(error);
-    alert("Invalid login");
+    dispatch(LOGIN_FAIL)
+    alert("Invalid login credentials");
   }
 };
+
+
+export const Register = (data) => async(dispatch) => {
+    const payload = {
+        "name": data.name, 
+        "email": data.email,
+        "password": data.password,
+        "username": data.username, 
+        "mobile": data.mobile, 
+        "description": data.description
+    }
+
+    if(data.username == "") return
+    try {
+        let res = await fetch( API_URL + "auth/register", {
+            method: "POST", 
+            body: JSON.stringify(payload),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        let data1 = await res.json()
+        console.log(data1)
+        if(data1.message == "Registration Success"){
+            dispatch(REGISTER_SUCCESS)
+        }
+        if(data1.message == "Registration failed, user already exists"){
+            alert("User already exist. Please try to login with your credentials.")
+        }
+
+    } catch (error) {
+        dispatch(REGISTER_FAIL)
+        console.log(error)
+    }
+
+}
+
 
 

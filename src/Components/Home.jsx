@@ -1,24 +1,28 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Logout } from "../Redux/action";
-import { Navigate } from 'react-router-dom';
+import { Sidebar } from './Sidebar'
 
 
 export const Home = () => {
 
-    const dispatch = useDispatch()
-    const handleLogout = () => {
-        dispatch(Logout())
-    }
-
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
-    console.log(isLoggedIn)
-    if(isLoggedIn == false) return(<Navigate to ="/" />)
+    
 
   return (
     <>
     <h1>Home</h1>
-    <button className="btn btn-danger" onClick={handleLogout} >Logout</button>
+
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
+        <div style={{ width: "400px", borderRight:"2px solid red" }} >
+            <Sidebar /> 
+        </div>
+
+        <div style={{ width: "100%" }} >
+            Left 
+        </div>
+    </div>
+
+
+
+
     </>
   )
 }

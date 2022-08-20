@@ -1,5 +1,7 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import {Link} from "react-router-dom"; 
+import { Register } from '../Redux/action';
 
 
 const initialState = {
@@ -18,6 +20,8 @@ export const Signup = () => {
         let {name, value} = e.target
         setData({ ...data, [name]: value })
     }
+    
+    const dispatch = useDispatch()
 
     let {name, email, password, username, mobile, description} = data
 
@@ -25,24 +29,7 @@ export const Signup = () => {
 
         console.log("data", data)
         if(data.username == "") return
-         try {
-            let res = await fetch( "https://masai-api-mocker.herokuapp.com/auth/register", {
-                method: "POST", 
-                body: JSON.stringify(data),
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            })
-            let data1 = await res.json()
-            console.log(data1)
-            if(data1.message == "Registration failed, user already exists"){
-                alert("User already exist. Please try to login with your credentials.")
-            }
-
-        } catch (error) {
-            console.log(error)
-        }
-
+        dispatch(Register(data))
     }
 
     const handleSubmit = (e) => {
@@ -163,7 +150,7 @@ export const Signup = () => {
           </button>
         </form>
 
-        Already have an account? Click on <Link to="/"> Login </Link>
+        <div>Already have an account? Click on <Link to="/Login"> Login </Link></div>
       </div>
 
         

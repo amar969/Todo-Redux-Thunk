@@ -30,7 +30,7 @@ export const Login = () => {
   }, []);
 
   if(isLoggedIn){
-      return (<Navigate to="/Home" />)
+      return (<Navigate to="/" />)
   }
   
 
@@ -86,7 +86,7 @@ export const Login = () => {
           </button>
         </form>
 
-        New to app? <Link to="/Signup"> Sign Up </Link>
+        <div>New to app? <Link to="/Signup"> Sign Up </Link></div>
       </div>
     </>
   );
