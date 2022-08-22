@@ -47,6 +47,7 @@ export const EditTask = () => {
       }
     );
     let data2 = await res.json();
+    if (res.statusCode == 200) alert("Task updated")
     console.log(data2);
   };
 
@@ -62,8 +63,7 @@ export const EditTask = () => {
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
-          gap: "20px",
-          marginTop: "50px",
+          gap: "20px"
         }}
       >
         <div
