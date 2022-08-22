@@ -6,7 +6,7 @@ export const SubtaskInput = ({ handleAdd }) => {
 
   return (
     <>
-    <div className="create_task_container" style={{ display: "flex", justifyContent:"center", alignItems:"center" }} >
+    <div style={{ display: "flex", justifyContent:"center", alignItems:"center" }} >
       <div className="inputbox_container" >
       <input
         type="text"
@@ -16,7 +16,7 @@ export const SubtaskInput = ({ handleAdd }) => {
         placeholder="Enter Subtask"
       />
       </div>
-      <button className="btn btn-primary" style={{ padding: "5px", height: "40px" }} onClick={() => handleAdd(title)}>
+      <button type="button"  className="btn btn-primary" style={{ padding: "5px", height: "40px" }} onClick={() => handleAdd(title)}>
     
         <svg
           xmlns="http://www.w3.org/2000/svg"

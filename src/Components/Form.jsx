@@ -7,8 +7,7 @@ let initialState = {
     description: "", 
     date: "", 
     todo_status: "", 
-    todo_tag: "",
-    subtask: ""
+    todo_tag: ""
 }
 
 export const Form = () => {
@@ -20,7 +19,7 @@ export const Form = () => {
         setData({...data, [name] : value})
     }
 
-    let {title, description, date, todo_status, todo_tag, subtask} = data
+    let {title, description, date, todo_status, todo_tag} = data
 
     const getData = async() => {
         try {
@@ -62,15 +61,15 @@ return (
             <textarea type="text" class="form-control"  value={description} name="description" onChange={handleChange} placeholder="Enter Description"/> 
         </div>
 
-        <div>
+        <div >
             <Subtask /> 
         </div>
+       
         
-        <div className='inputbox_container'>
+        <div className='inputbox_container'  >
             <input type="date" value={date} class="form-control"  name="date" onChange={handleChange} ></input> 
             <button style={{ backgroundColor: "skyblue" }} type="submit" onClick={handleClick} >Create a task</button>
         </div>
-
         </div>
 
         {/* radio */}
@@ -89,6 +88,8 @@ return (
         </div>
              
     </form>
+   
+ 
    
         
     </>

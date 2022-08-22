@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Logout } from "../Redux/action";
-import { Navigate } from "react-router-dom";
+import { Navigate, Link } from "react-router-dom";
 
 export const Sidebar = () => {
   const dispatch = useDispatch();
@@ -105,10 +105,12 @@ export const Sidebar = () => {
               marginBottom: "5px",
             }}
           >
+              <Link to="/Summary/All" style={{color: "white", fontWeight:"bold", textDecoration:"none"  }} >
               <div style={{ display: "flex", justifyContent: "space-around", }} >
                   <div>All</div>
                   <div>{all}</div>
               </div>
+              </Link>
           </div>
           <div
             style={{
@@ -119,11 +121,12 @@ export const Sidebar = () => {
               marginBottom: "5px",
             }}
           >
-            
+             <Link to="/Summary/Personal" style={{ color: "white", fontWeight:"bold", textDecoration:"none" }}>
             <div style={{ display: "flex", justifyContent: "space-around", }} >
                   <div>Personal</div>
                   <div>{personal}</div>
               </div>
+            </Link> 
           </div>
           <div
             style={{
@@ -134,10 +137,12 @@ export const Sidebar = () => {
               marginBottom: "5px",
             }}
           >
+            <Link to="/Summary/Offical" style={{color: "white", fontWeight:"bold", textDecoration:"none"  }} >
             <div style={{ display: "flex", justifyContent: "space-around", }} >
                   <div>Offical</div>
                   <div>{offical}</div>
               </div>
+            </Link>
           </div>
           <div
             style={{
@@ -148,10 +153,12 @@ export const Sidebar = () => {
               marginBottom: "5px",
             }}
           >
+            <Link to="/Summary/Other" style={{color: "white", fontWeight:"bold", textDecoration:"none"  }}>
             <div style={{ display: "flex", justifyContent: "space-around", }} >
                   <div>Other</div>
                   <div>{other}</div>
               </div>
+            </Link>
           </div>
         </div>
     

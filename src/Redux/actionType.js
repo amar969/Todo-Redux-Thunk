@@ -5,3 +5,10 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
 export const PROFILE = "PROFILE"; 
 export const ADD_TODO = "ADD_TODO"
+
+export const IN_PROGRESS_PERSONAL_COUNT = "IN_PROGRESS_PERSONAL_COUNT";
+export const TODO_PERSONAL_COUNT = "TODO_PERSONAL_COUNT";
+export const DONE_PERSONAL_COUNT = "DONE_PERSONAL_COUNT";
+export const TODODATA = "TODODATA"
+export const INPROGRESSDATA = "INPROGRESSDATA"
+export const DONEDATA = "DONEDATA"

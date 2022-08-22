@@ -7,6 +7,21 @@ import { SubtaskList } from "./SubtaskList";
 export const Subtask = () => {
   const [data, setData] = React.useState([]);
   const [showAll, setShowAll] = React.useState(true);
+  const [noteID, setNoteID] = React.useState(0)
+
+  
+  //get notes id 
+  const getNotesId = async() => {
+    let res = await fetch("https://notes-json-server-44.herokuapp.com/notes")
+    let data = await res.json()
+    console.log(data[data.length -1].id)
+    setNoteID(data[data.length-1].id)
+  }
+
+  React.useEffect(()=>{
+    getTodos()
+    getNotesId()
+  },[])
 
   // get Data
   const getTodos = async() => {
@@ -19,17 +34,16 @@ export const Subtask = () => {
     }
   }
 
-  React.useEffect(()=>{
-    getTodos()
-  },[])
 
   // post data 
 
   const handleAdd = async(title) => {
+    
     const payload = {
       title : title,
       status: false,
       id: uuid(),
+      noteId: noteID+1
     };
 
     try {
@@ -46,6 +60,7 @@ export const Subtask = () => {
       console.log(error)
     }
     setData([...data, payload]);
+    title=""
   };
 
 

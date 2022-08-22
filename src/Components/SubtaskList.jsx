@@ -17,6 +17,7 @@ export const SubtaskList = ({ handleToggle, handleDelete, data, showAll }) => {
             <input type="checkbox" value={item.status} onClick={() => handleToggle()} /> { item.title}
            
             <button
+              type="button"
               className="btn btn-danger"
               onClick={() => handleDelete(item.id)}
             >
