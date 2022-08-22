@@ -5,8 +5,10 @@ export const Other = () => {
   let [otherTodoCount, setOtherTodoCount] = React.useState(0);
   let [otherInProgress, setInProgressCount] = React.useState(0);
   let [otherDone, setDoneCount] = React.useState(0);
+  const [loading, setLoading] = React.useState(false);
 
   const getOther = async () => {
+    setLoading(true)
     try {
       let res1 = await fetch(
         "https://notes-json-server-44.herokuapp.com/notes?todo_status=Todo&todo_tag=Other"
@@ -39,6 +41,8 @@ export const Other = () => {
     } catch (error) {
       console.log(error);
     }
+
+    setLoading(false)
   };
 
   React.useEffect(() => {
@@ -47,18 +51,29 @@ export const Other = () => {
 
   return (
     <>
-     
-      <div
+    {loading ? 
+        <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      :
+
+      (
+
+        <div
         style={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
+          gap: "20px",
+          marginTop: "50px"
         }}
       >
         <div
           style={{
-            width: "30%",
-            borderRight: "2px solid black",
+            width: "400px",
+            borderRight: "2px solid red",
             height: "800px",
           }}
         >
@@ -67,7 +82,7 @@ export const Other = () => {
 
         <div
           style={{
-            width: "70%",
+            width: "100%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
@@ -113,6 +128,10 @@ export const Other = () => {
           </div>
         </div>
       </div>
+
+      )
+    }
+      
     </>
   );
 };

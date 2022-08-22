@@ -10,8 +10,10 @@ export const Offical = () => {
   let [officalTodoCount, setOfficalTodoCount] = React.useState(0);
   let [officalInProgress, setOfficalInProgressCount] = React.useState(0);
   let [officalDone, setOfficalDoneCount] = React.useState(0);
+  let [loading, setLoading] = React.useState(false)
 
   const getOther = async () => {
+    setLoading(true)
     try {
       let res1 = await fetch(
         "https://notes-json-server-44.herokuapp.com/notes?todo_status=Todo&todo_tag=Offical"
@@ -44,6 +46,8 @@ export const Offical = () => {
     } catch (error) {
       console.log(error);
     }
+
+    setLoading(false)
   };
 
   React.useEffect(() => {
@@ -52,18 +56,32 @@ export const Offical = () => {
 
   return (
     <>
-      <div
+
+    {
+        loading ? 
+        <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+        </div>
+        </div>
+
+        :
+
+        (
+
+            <div
         style={{
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
+            gap: "20px",
+            marginTop: "50px"
         }}
         >
         <div
           style={{
-              width: "30%",
-              borderRight: "2px solid black",
-              height: "800px",
+              width: "400px",
+              borderRight: "2px solid red",
             }}
             >
           <Sidebar />
@@ -71,7 +89,7 @@ export const Offical = () => {
 
         <div
           style={{
-              width: "70%",
+              width: "100%",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",
@@ -117,6 +135,11 @@ export const Offical = () => {
           </div>
         </div>
       </div>
+
+        )
+    }
+
+      
     </>
   );
 };

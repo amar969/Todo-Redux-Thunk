@@ -26,12 +26,14 @@ export const Personal = () => {
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
+            gap: "20px",
+            marginTop: "50px"
         }}
         >
         <div
           style={{
-              width: "30%",
-              borderRight: "2px solid black",
+              width: "400px",
+              borderRight: "2px solid red",
               height: "800px",
             }}
             >
@@ -40,7 +42,7 @@ export const Personal = () => {
 
         <div
           style={{
-              width: "70%",
+              width: "100%",
               display: "flex",
               flexDirection: "column",
               justifyContent: "flex-start",

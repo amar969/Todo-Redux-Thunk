@@ -8,20 +8,23 @@ export const Summary = () => {
   const [todosData, setTodosData] = React.useState([]);
   const [inProgress, setInProgress] = React.useState([]);
   const [done, setDone] = React.useState([])
+  const [loading, setLoading] = React.useState(false)
 
   const getTodosData = async() => {
+    setLoading(true)
     try {
         let res = await fetch("https://notes-json-server-44.herokuapp.com/notes/?_embed=subtask&todo_status=Todo")
         let data = await res.json()
         console.log(data)
         setTodosData(data)
-
     } catch (error) {
         console.log(error)        
     }
+    setLoading(false)
   }
 
   const getInProgressData = async() => {
+    setLoading(true)
     try {
         let res = await fetch("https://notes-json-server-44.herokuapp.com/notes/?_embed=subtask&todo_status=In Progress")
         let data = await res.json()
@@ -31,19 +34,20 @@ export const Summary = () => {
     } catch (error) {
         console.log(error)        
     }
+    setLoading(false)
   }
 
   const getDoneData = async() => {
-      try {
+    setLoading(true)  
+    try {
         let res = await fetch("https://notes-json-server-44.herokuapp.com/notes/?_embed=subtask&todo_status=Done")
         let data = await res.json()
         console.log(data)
         setDone(data)
-        
-
       } catch (error) {
           console.log(error)
       }
+    setLoading(false)
   }
 
   React.useEffect(() => {
@@ -53,18 +57,31 @@ export const Summary = () => {
   }, [])
 
   return (
+
     <>
-      <div
+
+    { loading ? 
+        <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      : 
+
+      (
+        <div
         style={{
           display: "flex",
           flexDirection: "row",
           justifyContent: "space-between",
+          gap: "20px",
+          marginTop: "50px"
         }}
       >
         <div
           style={{
-            width: "30%",
-            borderRight: "2px solid black",
+            width: "400px",
+            borderRight: "2px solid red",
             height: "800px",
           }}
         >
@@ -73,7 +90,7 @@ export const Summary = () => {
 
         <div
           style={{
-            width: "70%",
+            width: "100%",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
@@ -309,6 +326,13 @@ export const Summary = () => {
           </div>
         </div>
       </div>
+      )
+
+
+
+    }
+
+      
     </>
   );
 };

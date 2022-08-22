@@ -162,10 +162,18 @@ export const Sidebar = () => {
           </div>
         </div>
     
+        <Link to="/" >
+        <div 
+        style={{ fontWeight: "bold", marginTop:"200px" }}
+        className="btn btn-primary" >
+            Create task
+        </div>
+        </Link>
+
         <button
           className="btn btn-danger"
           onClick={handleLogout}
-          style={{ fontWeight: "bold", marginTop:"200px" }}
+          style={{ fontWeight: "bold"}}
         >
           Logout
         </button>
