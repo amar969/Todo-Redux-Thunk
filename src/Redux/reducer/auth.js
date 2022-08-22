@@ -1,9 +1,9 @@
-import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, REGISTER_FAIL, REGISTER_SUCCESS } from "../actionType";
+import { LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, REGISTER_FAIL, REGISTER_SUCCESS, PROFILE } from "../actionType";
 
 const user = JSON.parse(localStorage.getItem("user"));
 const initialState = user
-  ? { isLoggedIn: true, user }
-  : { isLoggedIn: false, user: null };
+  ? { isLoggedIn: true, user, profile:{} }
+  : { isLoggedIn: false, user: null, profile : {}};
 
 export const auth = (store = initialState, action) => {
   const { type, payload } = action;
@@ -38,6 +38,12 @@ export const auth = (store = initialState, action) => {
         ...store,
         isLoggedIn: false,
       };
+    
+    case PROFILE:
+        return{
+            ...store,
+            profile: payload.profile    
+        }
 
     default:
       return store;

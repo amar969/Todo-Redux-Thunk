@@ -1,4 +1,4 @@
-import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, REGISTER_FAIL, REGISTER_SUCCESS } from "./actionType";
+import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT, PROFILE, REGISTER_FAIL, REGISTER_SUCCESS } from "./actionType";
 
 
 export const Logout = () => (dispatch) => {
@@ -75,8 +75,30 @@ export const Register = (data) => async(dispatch) => {
         dispatch(REGISTER_FAIL)
         console.log(error)
     }
-
 }
+
+// export const getProfile = () => async(dispatch) => {
+//     try {
+//         let username = JSON.parse(localStorage.getItem("username"))
+//         let userToken = JSON.parse(localStorage.getItem("user"))
+//         console.log(userToken.token)
+//         let res = await fetch(API_URL + "user/" + username, {
+//             method: "GET", 
+//             headers: {
+//                 "Authorization": "Bearer " + userToken.token ,
+//             }
+//         })
+//         let data = await res.json()
+//         console.log(data)
+//         if(data.username){
+//             dispatch(PROFILE)
+//         }
+
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
 
 
 

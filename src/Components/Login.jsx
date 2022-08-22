@@ -14,6 +14,7 @@ export const Login = () => {
   const getData = async () => {
     if(username == "" && password == "") return
     dispatch(Login_Service(username, password))
+    localStorage.setItem("username", JSON.stringify(username))
   };
 
   const handleSubmit = (e) => {

@@ -1,5 +1,7 @@
 import React from 'react'
+import { Form } from './Form'
 import { Sidebar } from './Sidebar'
+import { Subtask } from './Subtask'
 
 
 export const Home = () => {
@@ -10,13 +12,13 @@ export const Home = () => {
     <>
     <h1>Home</h1>
 
-    <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)" }}>
+    <div style={{ display: "flex", gap:"20px" }}>
         <div style={{ width: "400px", borderRight:"2px solid red" }} >
             <Sidebar /> 
         </div>
 
-        <div style={{ width: "100%" }} >
-            Left 
+        <div style={{ width: "100%",   }} >
+            <Form />
         </div>
     </div>
 
